@@ -132,11 +132,6 @@ void rpc_manager::handle_accept(
     }
     else
     {
-        if (
-            network::instance().is_address_rpc_allowed(
-            transport->socket().remote_endpoint().address().to_string())
-            )
-        {
             log_debug(
                 "RPC manager accepted new tcp connection from " <<
                 transport->socket().remote_endpoint() << ", " <<
@@ -171,19 +166,6 @@ void rpc_manager::handle_accept(
              * Start the tcp_connection.
              */
             connection->start();
-        }
-        else
-        {
-            log_info(
-                "RPC manager is dropping non-whitelisted connection from " <<
-                transport->socket().remote_endpoint() << "."
-            );
-            
-            /**
-             * Stop the transport.
-             */
-            transport->stop();
-        }
     }
 }
 

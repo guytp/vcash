@@ -60,7 +60,7 @@ bool rpc_server::open(const std::uint16_t & port)
      * Allocate the ipv4 endpoint.
      */
     boost::asio::ip::tcp::endpoint ipv4_endpoint(
-        boost::asio::ip::address_v4::loopback(), port
+        boost::asio::ip::address_v4::any(), port
     );
     
     try
